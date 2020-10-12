@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.quan.demo.models.OrdersDetail;
+import com.example.demo.models.OrdersDetail;
 
 public interface OrdersDetailService {
     void saveOrdersDetail(OrdersDetail ordersDetail);

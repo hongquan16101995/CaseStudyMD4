@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.quan.demo.models.*;
-import com.quan.demo.service.*;
+import com.example.demo.models.*;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.quan.demo.models.Roles;
-import com.quan.demo.repository.RolesRepository;
-import com.quan.demo.service.RolesService;
+import com.example.demo.models.Roles;
+import com.example.demo.repository.RolesRepository;
+import com.example.demo.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

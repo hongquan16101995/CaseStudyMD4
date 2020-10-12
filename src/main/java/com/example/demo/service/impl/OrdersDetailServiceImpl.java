@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.quan.demo.models.OrdersDetail;
-import com.quan.demo.repository.OrdersDetailRepository;
-import com.quan.demo.service.OrdersDetailService;
+import com.example.demo.models.OrdersDetail;
+import com.example.demo.repository.OrdersDetailRepository;
+import com.example.demo.service.OrdersDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

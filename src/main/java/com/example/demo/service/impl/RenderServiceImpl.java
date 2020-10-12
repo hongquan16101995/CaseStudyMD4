@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.quan.demo.models.Render;
-import com.quan.demo.repository.RenderRepository;
-import com.quan.demo.service.RenderService;
+import com.example.demo.models.Render;
+import com.example.demo.repository.RenderRepository;
+import com.example.demo.service.RenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

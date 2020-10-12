@@ -1,9 +1,9 @@
 package com.example.demo.service.impl;
 
-import com.quan.demo.models.Roles;
-import com.quan.demo.models.UserInfo;
-import com.quan.demo.repository.UserRepository;
-import com.quan.demo.service.UserService;
+import com.example.demo.models.Roles;
+import com.example.demo.models.UserInfo;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

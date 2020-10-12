@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
-import com.quan.demo.models.*;
-import com.quan.demo.service.OrdersDetailService;
-import com.quan.demo.service.OrdersService;
-import com.quan.demo.service.ProductService;
-import com.quan.demo.service.UserService;
+import com.example.demo.models.*;
+import com.example.demo.service.OrdersDetailService;
+import com.example.demo.service.OrdersService;
+import com.example.demo.service.ProductService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

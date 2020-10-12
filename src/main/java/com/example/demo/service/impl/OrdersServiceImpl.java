@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.quan.demo.models.Orders;
-import com.quan.demo.repository.OrdersRepository;
-import com.quan.demo.service.OrdersService;
+import com.example.demo.models.Orders;
+import com.example.demo.repository.OrdersRepository;
+import com.example.demo.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

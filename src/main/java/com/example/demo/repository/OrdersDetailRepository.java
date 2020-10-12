@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.quan.demo.models.OrdersDetail;
+import com.example.demo.models.OrdersDetail;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

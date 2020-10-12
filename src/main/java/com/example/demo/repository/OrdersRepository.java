@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.quan.demo.models.Orders;
+import com.example.demo.models.Orders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

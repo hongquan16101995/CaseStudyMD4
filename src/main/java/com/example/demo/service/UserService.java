@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.quan.demo.models.Roles;
-import com.quan.demo.models.UserInfo;
+import com.example.demo.models.Roles;
+import com.example.demo.models.UserInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

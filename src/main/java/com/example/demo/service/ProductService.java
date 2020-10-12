@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.quan.demo.models.Product;
-import com.quan.demo.models.TypeProduct;
+import com.example.demo.models.Product;
+import com.example.demo.models.TypeProduct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
