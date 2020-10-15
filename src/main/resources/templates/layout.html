@@ -30,6 +30,65 @@
         })
     </script>
 
+    <script>
+
+        function submitComment(postID, userID) {
+            let textArea = document.getElementById("input-textarea")
+            let counter = document.getElementById("input-characters")
+            console.log("click submit" + postID + " " + userID)
+            let contentToPost = textArea.value;
+            textArea.value = "";
+            counter.innerText = 0;
+            if (contentToPost.length != 0) {
+                comment(postID, userID, contentToPost)
+            }
+        }
+        function createCommentInHtml(postID, userID, postContent, commentId) {
+            let now = new Date()
+            let time = now.toLocaleTimeString()
+            let date = now.toLocaleString()
+            let fullName = document.getElementById("name" + postID + userID).value
+            // postContent = postContent.replace(/</g, "&lt;")
+            // postContent = postContent.replace(/\n/g, "<br />")
+            // postContent = postContent.replace(/(https?:\/\/[^\s]+)/g, "<a href=\"$1\" target=\"_blank\">$1</a>")
+
+            let template = `
+				<article id="article-container-${commentId}">
+					<header>
+						<h4 >${fullName}</h4>
+					</header>
+					<blockquote id="comment-content${commentId}">
+						${postContent}
+					</blockquote>
+					<hr/>
+            </article>`
+            document.getElementById("form-container").insertAdjacentHTML("afterend", template)
+            }
+        function comment(postID, userID, content) {
+            console.log('postID ' + postID)
+            console.log('userID ' + userID)
+            console.log('content ' + content)
+            let json = {
+                "product": {"id": postID},
+                "userInfo": {"id": userID},
+                "content": content
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(json),
+                url: $(location).attr('href'),
+                success: function (comment) {
+                    console.log("comment thanh cong +  " + comment.id)
+                    createCommentInHtml(postID, userID, content, comment.id)
+                }
+            });
+            event.preventDefault();
+        }
+    </script>
 
     <!--ajax-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.pack.js"></script>

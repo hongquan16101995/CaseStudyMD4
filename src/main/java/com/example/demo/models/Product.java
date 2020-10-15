@@ -17,6 +17,7 @@ public class Product {
     private String avatar;
     private String description;
     private int amount;
+    private long commentCount;
 
     @Transient
     private MultipartFile image;

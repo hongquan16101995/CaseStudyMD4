@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -61,6 +65,13 @@ public class UserController {
         return userInfo;
     }
 
+    @Autowired
+    private CommentService commentService;
+
+    public Iterable<Comment> getAllCommentByProduct(Product product, Pageable pageable) {
+        return commentService.getAllCommentByProduct(product, pageable);
+    }
+
     @ModelAttribute("typeproducts")
     public Iterable<TypeProduct> getListType() {
         return typeProductService.findAll();
@@ -76,12 +87,12 @@ public class UserController {
         } else {
             products = productService.findAll(pageable);
         }
-        if (products.getTotalPages() >0) {
+        if (products.getTotalPages() > 0) {
             modelAndView.addObject("products", products);
             modelAndView.addObject("regex", regex.orElse(""));
         } else {
             String mess = "Ko có sp nào";
-            modelAndView.addObject("mess",mess);
+            modelAndView.addObject("mess", mess);
             modelAndView.addObject("products", products);
             modelAndView.addObject("regex", regex.orElse(""));
         }
@@ -133,9 +144,30 @@ public class UserController {
     }
 
     @GetMapping("/viewproduct/{id}")
-    public ModelAndView viewProduct(@PathVariable("id") Long id) {
+    public ModelAndView viewProduct(@PathVariable("id") Long id, @PageableDefault(value = 5, page = 0)
+    @SortDefault(sort = "timeComment", direction = Sort.Direction.DESC)
+            Pageable pageable) {
         Product product = productService.findOne(id);
-        return new ModelAndView("user/viewproduct", "product", product);
+        ModelAndView modelAndView = new ModelAndView("user/viewproduct", "product", product);
+        modelAndView.addObject("commentPage", getAllCommentByProduct(product,pageable));
+        modelAndView.addObject("currentTime", System.currentTimeMillis());
+        modelAndView.addObject("newComment", new Comment());
+        return modelAndView;
+    }
+
+    @PostMapping("/viewproduct/{id}")
+    public ResponseEntity<Comment> saveComment(@RequestBody Comment comment,
+                                               @PathVariable("id") Long id) {
+        comment.setTimeComment(getCurrentDate());
+        commentService.save(comment);
+        Product product = productService.findOne(id);
+        product.setCommentCount(commentService.countAllByProduct(product));
+        productService.saveProduct(product);
+        return new ResponseEntity<>(comment, HttpStatus.OK);
+    }
+
+    private Date getCurrentDate() {
+        return new Date(System.currentTimeMillis());
     }
 
     @GetMapping("/bill")
